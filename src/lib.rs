@@ -43,8 +43,13 @@ pub fn main() {
         );
     }));
 
-    // remove check on engraves
-    // 05 00 00 14
+    // skip old engrave removal
+    // 0B 00 00 14
     Patch::in_text(0x0295d75c).bytes(&[0x0b, 0x00, 0x00, 0x14]).unwrap();
+
+    // skip confirm dialog
+    // 32 00 00 14
+    //       710295d5d0 28 00 00 14     b          LAB_710295d670
+    Patch::in_text(0x0295d5d0).bytes(&[0x28, 0x00, 0x00, 0x14]).unwrap();
 
 }
